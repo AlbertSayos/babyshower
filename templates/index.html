@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de días</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/style.css')}}" rel="stylesheet" /> <!-- Agregamos nuestro archivo CSS -->
+  <style>
+    /* También puedes incluir la clase CSS aquí si no quieres enlazarlo desde un archivo externo */
+    .acme-regular {
+      font-family: "Acme", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+</head>
+
+
+
+<body>
+    <div id="ZonaDeAudio">
+      <div id="reproductor">
+        <button id="botonReproducir">Reproducir</button>
+        <audio id="audioPlayer" src="{{ url_for('static',filename='sound/Hotel.mp3')}}"></audio>
+      </div>
+      
+    </div>
+
+    <div class="zonaDeImagenes">
+      <img src="{{ url_for('static',filename='image/textobe.png')}}">
+    </div>
+
+    <div id="cuerpo">
+      <div id="contador" class="acme-regular"></div> <!-- Aplicamos la clase CSS a nuestro contador -->
+    </div>    
+    <script src="{{ url_for('static',filename='script/script.js')}}"></script>
+
+
+
+</body>
+</html>

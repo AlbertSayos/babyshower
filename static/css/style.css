@@ -1,0 +1,73 @@
+/* src/css/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    
+    margin: 0;
+    padding: 10;
+  }
+  
+  #contador {
+    font-size: 24px;
+    padding: 20px;
+    background-color: #F1E8D9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #EFB0C9;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #cuerpo{
+    display: flex;
+    align-content: center;
+    min-width: 100vw;
+    min-height: 35vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0DEFD;
+  }
+
+  #reproductor {
+    text-align: center;
+  }
+  
+  #botonReproducir {
+    background-color: #007bff; /* Azul */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+#ZonaDeAudio{
+
+  background-color: #F0DEFD;
+}
+
+.zonaDeImagenes {
+  background-image: url('../image/fondo.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-width: 300px;
+}
+
+.zonaDeImagenes img{
+  width: 70%;
+  min-width: 300px;
+}
+
+.fcc-btn {
+  background-color: #199319;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+}

@@ -22,11 +22,6 @@ def get_db_connection():
 """
 
 
-@app.route('/rata')
-def rata():
-    print(f"esta es la cadena de coneccion {stringConn}")
-    return render_template('index.html')
-
 @app.route('/')
 def index():
     return render_template('index.html')

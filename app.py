@@ -1,26 +1,23 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-import mysql.connector
-import psycopg2
-from traerdato import stringConn
+from flask import Flask, render_template, request, jsonify
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de entorno del archivo .env
+load_dotenv()
 
 PORT = 8080
 
 app = Flask(__name__)
 
-# Configuración de la base de datos
-"""
-db_config = {
-    'user': 'root',
-    'password': '',  # Deja la contraseña vacía si no has configurado una
-    'host': '127.0.0.1',
-    'database': 'inivitaciones',
-}
+# Configuración de la base de datos MongoDB
+mongo_uri = os.getenv("MONGO_CADENACONECCION")
+mongo_db_name = os.getenv("MONGO_DB")
+mongo_collection_name = os.getenv("MONGO_TABLA")
 
-def get_db_connection():
-    connection = mysql.connector.connect(**db_config)
-    return connection
-"""
-
+client = MongoClient(mongo_uri)
+db = client[mongo_db_name]
+collection = db[mongo_collection_name]
 
 @app.route('/')
 def index():
@@ -28,19 +25,11 @@ def index():
 
 @app.route('/invitacion/<nombre>')
 def perfil(nombre):
-    connection = get_db_connection()
-    cursor = connection.cursor(dictionary=True)
-    
     # Buscar el perfil por nombre
-    query = "SELECT * FROM invitaciones WHERE familia = %s"
-    cursor.execute(query, (nombre,))
-    result = cursor.fetchone()
-    
-    cursor.close()
-    connection.close()
+    result = collection.find_one({"nomFamilia": nombre})
     
     if result:
-        return render_template('perfil.html', nombre=result['familia'], asistencia=result['asistencia'])
+        return render_template('perfil.html', nombre=result['nomFamilia'], asistencia=result['asistencia'])
     else:
         return "Perfil no encontrado", 404
 
@@ -49,23 +38,17 @@ def update_asistencia():
     data = request.get_json()
     nombre = data['nombre']
     
-    connection = get_db_connection()
-    cursor = connection.cursor()
-    
     # Actualizar la asistencia
-    query = "UPDATE Invitaciones SET asistencia = NOT asistencia WHERE familia = %s"
-    cursor.execute(query, (nombre,))
-    connection.commit()
+    result = collection.find_one_and_update(
+        {"nomFamilia": nombre},
+        {"$set": {"asistencia": not collection.find_one({"nomFamilia": nombre})["asistencia"]}},
+        return_document=True
+    )
     
-    # Obtener el nuevo estado de asistencia
-    query = "SELECT asistencia FROM Invitaciones WHERE familia = %s"
-    cursor.execute(query, (nombre,))
-    result = cursor.fetchone()
-    
-    cursor.close()
-    connection.close()
-    
-    return jsonify({'asistencia': result[0]})
+    if result:
+        return jsonify({'asistencia': result['asistencia']})
+    else:
+        return jsonify({'error': 'No se pudo actualizar la asistencia'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)

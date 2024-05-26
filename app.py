@@ -72,5 +72,11 @@ def update_asistencia():
     
     return jsonify({'asistencia': result[0]})
 
-if __name__ == '__main__':
-    app.run(debug=True, port=PORT)
+if __name__ == "__main__":
+    import os
+    from gunicorn.app.wsgiapp import WSGIApplication
+
+    os.environ["PORT"] = "8000"  # Puerto para tu aplicación Flask
+
+    # Iniciar Gunicorn
+    WSGIApplication("%(prog)s [OPTIONS]").run()

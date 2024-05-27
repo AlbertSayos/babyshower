@@ -9,21 +9,27 @@ body, html {
 
 .zonaDeImagenes {
   width: 100%;
-  background-image: url(../image/fondo.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  background-position: center;
-  height: 116vw;
-  max-width: 700px;
-  max-height: 100vh;
-  align-items: center;
+    background-image: url(../image/fondo.png);
+    background-size: 98vw 97vh;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-position: center;
+    /* height: 178vw; */
+    max-width: 700px;
+    max-height: 872px;
+    align-items: center;
+}
+@media (min-width: 700px) {
+  .zonaDeImagenes {
+      background-size: cover;
+  }
 }
 
 .imagen {
-  width: 50%; /* La imagen ocupará el 50% del ancho del contenedor */
+  width: 80%;
+  max-width: 370px;
 }
 
 .imagen img {
@@ -35,6 +41,8 @@ body, html {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 50%;
+  max-width: 240px;
 }
 
 .botones,.botones .btn{

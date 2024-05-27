@@ -70,6 +70,12 @@ def update_asistencia():
     else:
         return jsonify({'error': 'No se pudo actualizar la asistencia'}), 404
 
+@app.route('/enviar', methods=['GET'])
+def enviar():
+    telefono = os.getenv("NUMTEL")
+    mensaje = "Hola, estoy encantado de asistir a tu baby shower."
+    whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
+    return jsonify({'whatsapp_link': whatsapp_link})
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)

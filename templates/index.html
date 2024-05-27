@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contador de días</title>
+  <title>Baby shower</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
@@ -27,10 +27,25 @@
         <img class="msj" src="{{ url_for('static',filename='image/msj-teesperamos.png')}}">
       </div>
       <div class="botones">
-        <img class="btn" src="{{ url_for('static',filename='image/btn-asistencia.png')}}">
+        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia()">
         <img class="btn" src="{{ url_for('static',filename='image/btn-ubicacion.png')}}">
         <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}">
     </div>
-
+    <script>
+      function toggleAsistencia() {
+          fetch('/enviar')
+              .then(response => response.json())
+              .then(data => {
+                  const whatsappLink = data.whatsapp_link;
+                  // Crear un elemento <a> dinámicamente
+                  const a = document.createElement('a');
+                  a.href = whatsappLink;
+                  a.target = "_blank"; // Establecer el target
+                  // Simular un clic en el enlace
+                  a.click();
+              })
+              .catch(error => console.error('Error al enviar el mensaje:', error));
+      }
+  </script>
 </body>
 </html>

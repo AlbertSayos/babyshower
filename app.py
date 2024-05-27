@@ -73,7 +73,7 @@ def update_asistencia():
 @app.route('/enviar', methods=['GET'])
 def enviar():
     telefono = os.getenv("NUMTEL")
-    mensaje = "Hola, estoy encantado de asistir a tu baby shower."
+    mensaje = "Hola! 🤗 con gusto asistiré al Baby Shower 💝 de Gianna 👶🏻👑"
     whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
     return jsonify({'whatsapp_link': whatsapp_link})
 

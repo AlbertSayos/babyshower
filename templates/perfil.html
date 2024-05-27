@@ -19,8 +19,8 @@
 </head>
 <body>
   <h1>{{ nombre }}</h1>
-  <button id="asistencia" class="fcc-btn" onclick="toggleAsistencia()">{{ 'Asistirá' if asistencia else 'No asistirá' }}</button>
-  <a target="_blank" class="fcc-btn" href="https://www.google.com/">ubicacion</a>
+  <button id="asistencia" class="fcc-btn" onclick="toggleAsistencia()">Confirmar asistencia</button>
+  <a target="_blank" class="fcc-btn" id="whatsapp-link" href="#">ubicacion</a>
   
   <script>
     function toggleAsistencia() {
@@ -33,14 +33,13 @@
       })
       .then(response => response.json())
       .then(data => {
-        const button = document.getElementById('asistencia');
-        if (data.asistencia) {
-          button.innerHTML = 'Asistirá';
-        } else {
-          button.innerHTML = 'No asistirá';
-        }
+        // Abrir enlace de WhatsApp en una nueva pestaña
+        const whatsappLink = document.getElementById('whatsapp-link');
+        whatsappLink.href = data.whatsapp_link;
+        whatsappLink.click(); // Hacer clic automáticamente
       });
     }
-  </script>
+</script>
+
 </body>
 </html>

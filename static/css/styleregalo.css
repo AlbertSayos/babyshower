@@ -1,0 +1,38 @@
+.regalos{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 600px;
+    max-height: 1000px;
+    width: 95vw;
+    height: 96vh;
+    align-content: flex-start;
+    margin: 5px;
+    background-color: #DEF3FD ;
+}
+
+
+.regalos .inactivo{
+    border: 1px red solid;
+    padding: 3px;
+    background-color: rgba(49, 49, 49, 0.548);
+    max-width: 120px;
+    width: 100%;
+    margin: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+
+.regalos .activo{
+    border: 1px red solid;
+    padding: 3px;
+    background-color: rgb(240, 222, 253);
+    max-width: 120px;
+    width: 100%;
+    margin: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+}

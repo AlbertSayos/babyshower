@@ -1,73 +1,42 @@
-/* src/css/style.css */
-
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    
-    margin: 0;
-    padding: 10;
-  }
-  
-  #contador {
-    font-size: 24px;
-    padding: 20px;
-    background-color: #F1E8D9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #EFB0C9;
-    display: flex;
-    flex-wrap: nowrap;
-    height: 50px;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  #cuerpo{
-    display: flex;
-    align-content: center;
-    min-width: 100vw;
-    min-height: 35vh;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-color: #F0DEFD;
-  }
-
-  #reproductor {
-    text-align: center;
-  }
-  
-  #botonReproducir {
-    background-color: #007bff; /* Azul */
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-#ZonaDeAudio{
-
-  background-color: #F0DEFD;
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .zonaDeImagenes {
-  background-image: url('../image/fondo.jpeg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
   width: 100%;
-  min-width: 300px;
+  background-image: url(../image/fondo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  background-position: center;
+  height: 116vw;
+  max-width: 700px;
+  max-height: 100vh;
+  align-items: center;
 }
 
-.zonaDeImagenes img{
-  width: 70%;
-  min-width: 300px;
+.imagen {
+  width: 50%; /* La imagen ocupará el 50% del ancho del contenedor */
 }
 
-.fcc-btn {
-  background-color: #199319;
-  color: white;
-  padding: 15px 25px;
-  text-decoration: none;
+.imagen img {
+  width: 100%; /* La imagen ocupará el 100% del ancho del div .imagen */
+  display: block; /* Quita el espacio en blanco debajo de la imagen */
+}
+.botones{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.botones,.botones .btn{
+  width: 50%;
 }

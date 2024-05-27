@@ -21,24 +21,16 @@
 
 
 <body>
-    <div id="ZonaDeAudio">
-      <div id="reproductor">
-        <button id="botonReproducir">Reproducir</button>
-        <audio id="audioPlayer" src="{{ url_for('static',filename='sound/Hotel.mp3')}}"></audio>
-      </div>
-      
-    </div>
 
     <div class="zonaDeImagenes">
-      <img src="{{ url_for('static',filename='image/textobe.png')}}">
+      <div class="imagen">
+        <img class="msj" src="{{ url_for('static',filename='image/msj-teesperamos.png')}}">
+      </div>
+      <div class="botones">
+        <img class="btn" src="{{ url_for('static',filename='image/btn-asistencia.png')}}">
+        <img class="btn" src="{{ url_for('static',filename='image/btn-ubicacion.png')}}">
+        <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}">
     </div>
-
-    <div id="cuerpo">
-      <div id="contador" class="acme-regular"></div> <!-- Aplicamos la clase CSS a nuestro contador -->
-    </div>    
-    <script src="{{ url_for('static',filename='script/script.js')}}"></script>
-
-
 
 </body>
 </html>

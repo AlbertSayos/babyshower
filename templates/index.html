@@ -28,7 +28,7 @@
       </div>
       <div class="botones">
         <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia()">
-        <img class="btn" src="{{ url_for('static',filename='image/btn-ubicacion.png')}}">
+        <img class="btn" src="{{ url_for('static', filename='image/btn-ubicacion.png') }}" onclick="irADireccion()">
         <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}">
     </div>
     <script>
@@ -46,6 +46,12 @@
               })
               .catch(error => console.error('Error al enviar el mensaje:', error));
       }
+      function irADireccion() {
+            const a = document.createElement('a');
+            a.href = "https://www.google.com/maps/place/Galvarino+2493,+Chiguayante,+B%C3%ADo+B%C3%ADo,+Chile/@-36.9136494,-73.0294044,17z/data=!3m1!4b1!4m5!3m4!1s0x9669b762e7ddbc1f:0xbc240be36e8b1b9b!8m2!3d-36.9136537!4d-73.0268295?hl=es&entry=ttu";
+            a.target = "_blank";
+            a.click();
+        }
   </script>
 </body>
 </html>

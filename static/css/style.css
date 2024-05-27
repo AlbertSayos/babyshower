@@ -62,34 +62,34 @@ body, html {
   border-radius: 50%;
   position: relative;
   animation: float 8s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 20px rgba(33, 137, 248, 0.384);
 }
 
 .bubble1 {
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.3));
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(33, 180, 248, 0.45));
   animation: float 5s linear infinite;
 }
 
 .bubble2 {
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.5));
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(33, 180, 248, 0.384));
   animation: float 7s linear infinite;
 }
 
 .bubble3 {
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.4));
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(33, 180, 248, 0.384));
   animation: float 4s linear infinite;
 }
 
 .bubble4 {
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.3));
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(33, 180, 248, 0.384));
   animation: float 6s linear infinite;
 }
 

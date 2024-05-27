@@ -59,13 +59,38 @@ body, html {
 }
 
 .bubble {
-  width: 100px;
-  height: 100px;
-  background-color: rgba(2, 123, 252, 0.322);
   border-radius: 50%;
   position: relative;
   animation: float 8s ease-in-out infinite;
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.bubble1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.3));
+  animation: float 5s linear infinite;
+}
+
+.bubble2 {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.5));
+  animation: float 7s linear infinite;
+}
+
+.bubble3 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.4));
+  animation: float 4s linear infinite;
+}
+
+.bubble4 {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(0, 123, 255, 0), rgba(0, 123, 255, 0.3));
+  animation: float 6s linear infinite;
 }
 
 @keyframes float {

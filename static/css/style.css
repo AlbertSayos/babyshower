@@ -48,3 +48,39 @@ body, html {
 .botones,.botones .btn{
   width: 50%;
 }
+
+.burbujas{
+  display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+.bubble {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(2, 123, 252, 0.322);
+  border-radius: 50%;
+  position: relative;
+  animation: float 8s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+@keyframes float {
+  0% {
+      bottom: -100px; /* Empezar desde fuera de la vista */
+      opacity: 0;
+  }
+  10% {
+      opacity: 1;
+  }
+  90% {
+      opacity: 1;
+  }
+  100% {
+      bottom: 100vh; /* Ir más allá de la parte superior de la vista */
+      opacity: 0;
+  }
+}

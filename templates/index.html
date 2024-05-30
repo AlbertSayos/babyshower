@@ -29,7 +29,7 @@
       <div class="botones">
         <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia()">
         <img class="btn" src="{{ url_for('static', filename='image/btn-ubicacion.png') }}" onclick="irADireccion()">
-        <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}">
+        <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}" onclick="irARegalos()">
         
     </div>
     <div class="burbujas">
@@ -59,6 +59,11 @@
             a.target = "_blank";
             a.click();
         }
+      // Redirige a la página de regalos
+      function irARegalos() {
+            window.location.href = "/regalos";
+        }
+
   </script>
 </body>
 </html>

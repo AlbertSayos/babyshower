@@ -3,14 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link href="{{ url_for('static',filename='css/style.css')}}" rel="stylesheet" />-->
-    <!--<link href="{{ url_for('static',filename='css/styleregalo.css')}}" rel="stylesheet" /> -->
     <link href="../static/css/styleregalo.css" rel="stylesheet" />
-    <title>regalos</title>
+    <title>Regalos</title>
 </head>
 <body class="regalos">
-    <div class="activo">ROPA</div>
-    <div class="inactivo">JUGUETE</div>
-    <div class="activo">MODA</div>
+    
+    {% for elemento in lista %}
+    <div class="dropdown">
+        <div class="cosa">
+            <span class="check-circle" id="check-circle-{{ elemento[3] }}" onclick="AnotarRegalo('{{ elemento[0] }}','check-circle-{{ elemento[3] }}')"></span>
+            <h4 class="dropdown-toggle" onclick="toggleDropdown('dropdown-content-{{ elemento[3] }}')">{{ elemento[0] }}</h4>
+        </div>
+        <div id="dropdown-content-{{ elemento[3] }}" class="dropdown-content">
+            <p class="description">{{ elemento[1] }}</p>
+            <a class="btn-aceptar" onclick="AnotarRegalo('{{ elemento[0] }}','check-circle-{{ elemento[3] }}')">ANOTAR</a>
+            {% if elemento[2] %}
+            <a target="_blank" class="btn-referencia" href="{{ elemento[2] }}">REFERENCIA</a>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+<button class="btn-regalar" onclick="enviarRegalos()"> regalar </button>
+
+<script>
+    var listaDeRegalos = [];
+
+    function toggleDropdown(id) {
+        var content = document.getElementById(id);
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "flex";
+        } else {
+            content.style.display = "none";
+        }
+    }
+
+    function AnotarRegalo(nombreRegalo, id) {
+        var check = document.getElementById(id);
+        if (check.classList.contains('check-circle')) {
+            check.classList.remove('check-circle');
+            check.classList.add('check-circle-validado');
+            listaDeRegalos.push(nombreRegalo);
+        } else {
+            check.classList.remove('check-circle-validado');
+            check.classList.add('check-circle');
+            eliminarRegalo(nombreRegalo);
+        }
+    }
+
+    function eliminarRegalo(nombre) {
+        listaDeRegalos = listaDeRegalos.filter(function(regalo) {
+            return regalo !== nombre;
+        });
+    }
+
+    function enviarRegalos() {
+        var xhr = new XMLHttpRequest();
+        var url = "/regalar";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onreadystatechange = function () {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+             // Aquí puedes manejar la respuesta del backend si es necesario
+                console.log(xhr.responseText);
+                location.reload();
+            }
+        };
+
+        xhr.send(JSON.stringify({ regalos: listaDeRegalos }));
+        }
+
+</script>
+
 </body>
 </html>
+

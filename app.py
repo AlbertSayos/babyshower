@@ -15,16 +15,22 @@ mongo_uri = os.getenv("MONGO_CADENACONECCION")
 mongo_db_name = os.getenv("MONGO_DB")
 mongo_collection_name = os.getenv("MONGO_TABLA")
 mongo_collection_regalo = os.getenv("MONGO_REGALOS")
+mongo_collection_name_no_repetibles = os.getenv("MONGO_REGALOSNOREPETIBLES")
+mongo_collection_name_repetibles = os.getenv("MONGO_REGALOSREPETIBLES")
 
 client = MongoClient(mongo_uri)
 db = client[mongo_db_name]
 collection = db[mongo_collection_name]
 listaRegalos = db[mongo_collection_regalo]
+collection_no_repetibles = db[mongo_collection_name_no_repetibles]
+collection_repetibles = db[mongo_collection_name_repetibles]
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
+"""
 @app.route('/invitacion/<nombre>')
 def perfil(nombre):
     # Buscar el perfil por nombre
@@ -35,40 +41,52 @@ def perfil(nombre):
     else:
         return "Perfil no encontrado", 404
 
+"""
+
+
 
 @app.route('/regalos')
-def regalos():
-    lista = listaRegalos.find()
-    print(lista)
-    
-    retorno = []
-    for regalo in lista:
-        if regalo["EsActivo"]:
-            retorno.append(regalo["regalo"])
-    print(retorno)
-    return render_template('index.html')
+def mostrar_regalos():
+    regalos_no_repetibles = list(collection_no_repetibles.find({}))
+    regalos_repetibles = list(collection_repetibles.find({}))
+    #regalos_para_html = [[regalo['compras'], regalo['descripcion'], regalo['link']] for regalo in regalos_repetibles]
+    regalos_para_html = []
+    i=0
+    for regalo in regalos_no_repetibles:
+        if not regalo["meAnoto"]:
+            infoDeRegalo= [regalo['compras'], regalo['descripcion'], regalo['link'],i]
+            i = i +1
+            regalos_para_html.append(infoDeRegalo)
+    for regalo in regalos_repetibles:
+        if not regalo["meAnoto"]:
+            infoDeRegalo= [regalo['compras'], regalo['descripcion'], regalo['link'],i]
+            i = i +1
+            regalos_para_html.append(infoDeRegalo)
+    print(regalos_para_html)
+    return render_template('regalos.html', lista=regalos_para_html)
 
-@app.route('/update_asistencia', methods=['POST'])
-def update_asistencia():
-    data = request.get_json()
-    nombre = data['nombre']
-    
-    # Actualizar la asistencia a True
-    result = collection.find_one_and_update(
-        {"nomFamilia": nombre},
-        {"$set": {"asistencia": True}},
-        return_document=True
-    )
-    
-    if result:
-        # Generar el enlace de WhatsApp con el mensaje predeterminado
-        telefono = os.getenv("NUMTEL")
-        mensaje = "Hola, estoy encantado de asistir a tu baby shower."
-        whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
-        
-        return jsonify({'whatsapp_link': whatsapp_link})
+
+
+@app.route('/regalar', methods=['POST'])
+def regalar():
+    data = request.get_json()  # Obtiene el cuerpo JSON de la solicitud
+    if data is not None:
+        regalos = data.get('regalos', [])  # Obtiene la lista de regalos del JSON
+        for regalo in regalos:
+            print(regalo)
+            result = collection_no_repetibles.find_one({"compras": regalo})
+            if result:
+                # Actualiza el valor de 'meAnoto' a True
+                print("lo cambie")
+                collection_no_repetibles.update_one({"compras": regalo}, {"$set": {"meAnoto": True}}
+)
+
+
+        print(f"Regale algo: {regalos}")  # Imprime la lista de regalos en el servidor
+        return jsonify({"message": "Regalos recibidos", "regalos": regalos}), 200
     else:
-        return jsonify({'error': 'No se pudo actualizar la asistencia'}), 404
+        return jsonify({"error": "Datos inválidos"}), 400
+    
 
 @app.route('/enviar', methods=['GET'])
 def enviar():
@@ -76,6 +94,22 @@ def enviar():
     mensaje = "Hola! 🤗 con gusto asistiré al Baby Shower 💝 de Gianna 👶🏻👑"
     whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
     return jsonify({'whatsapp_link': whatsapp_link})
+
+
+"""
+@app.route('/pasarafalse')
+def pasarafalse():
+    # Obtiene todos los documentos de la colección
+    regalos = collection_no_repetibles.find({})
+    
+    # Itera sobre los documentos y actualiza 'meAnoto' a False
+    for regalo in regalos:
+        # Actualiza el campo 'meAnoto' a False para este documento
+        collection_no_repetibles.update_one({"_id": regalo["_id"]}, {"$set": {"meAnoto": False}})
+    
+    return jsonify({"message": "Regalos cambiados"}), 200
+"""
+                                             
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)

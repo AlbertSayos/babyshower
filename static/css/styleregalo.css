@@ -1,38 +1,185 @@
-.regalos{
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f0f8;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.dropdown {
+    max-width: 320px;
+    min-width: 320px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd1dc, #ffecf0); /* Rosa pastel */
+}
+
+.dropdown-toggle {
+    background: linear-gradient(135deg, #ffccd5, #ffe6ea); /* Rosa pastel */
+    color: #2f4f4f;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px 10px 0 0;
+    outline: none;
+    display: flex;
+}
+
+.dropdown-toggle:hover {
+    background: linear-gradient(135deg, #ffe6ea, #ffccd5); /* Inversión del gradiente para hover */
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 0 0 10px 10px;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 600px;
-    max-height: 1000px;
-    width: 95vw;
-    height: 96vh;
-    align-content: flex-start;
-    margin: 5px;
-    background-color: #DEF3FD ;
-}
-
-
-.regalos .inactivo{
-    border: 1px red solid;
-    padding: 3px;
-    background-color: rgba(49, 49, 49, 0.548);
-    max-width: 120px;
-    width: 100%;
-    margin: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    flex-wrap: wrap;
+    justify-content: space-around;
 
 }
 
+.dropdown-content .description {
+    width: 75%;
+    margin: 10px 0;
+    color: #2f4f4f;
+    text-align: center;
+}
 
-.regalos .activo{
-    border: 1px red solid;
-    padding: 3px;
-    background-color: rgb(240, 222, 253);
-    max-width: 120px;
+
+.btn-aceptar, .btn-referencia {
+    background: linear-gradient(135deg, #ffe6ea, #ffccd5); /* Rosa pastel */
+    color: #2f4f4f;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 35%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-aceptar:hover, .btn-referencia:hover {
+    background: linear-gradient(135deg, #ffccd5, #ffe6ea); /* Inversión del gradiente para hover */
+}
+
+
+/* Estilos para el modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
     width: 100%;
-    margin: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
 
+.modal-content {
+    background-color: #ffffff; /* Fondo rosa pastel */
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-confirm {
+    background: linear-gradient(135deg, #ffccd5, #ffe6ea); /* Rosa pastel */
+    color: #2f4f4f;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-confirm:hover {
+    background: linear-gradient(135deg, #ffe6ea, #ffccd5); /* Inversión del gradiente para hover */
+}
+
+.check-circle {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown h4{
+    width: 80%;
+}
+
+.cosa{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.check-circle-validado {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    transition: background-color 0.3s ease;
+    background: greenyellow;
+}
+
+.btn-regalar{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, #77dd77, #99ff99); /* Gradiente de verde pastel */
+    border: none;
+    border-radius: 50%; /* Hace el botón redondo */
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 60px; /* Ajusta el ancho para hacerlo redondo */
+    height: 60px; /* Ajusta la altura para hacerlo redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra para mejorar la visibilidad */
+    z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
+}
+
+.btn-regalar:hover {
+    background: linear-gradient(to right, #66cc66, #88ff88); 
 }

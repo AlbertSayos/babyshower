@@ -6,47 +6,54 @@
     <link href="../static/css/styleregalo.css" rel="stylesheet" />
     <title>Regalos</title>
 </head>
-<body class="regalos">
-    
-    {% for elemento in lista %}
-    <div class="dropdown">
-        <div class="cosa">
-            <span class="check-circle" id="check-circle-{{ elemento[3] }}" onclick="AnotarRegalo('{{ elemento[0] }}','check-circle-{{ elemento[3] }}')"></span>
-            <h4 class="dropdown-toggle" onclick="toggleDropdown('dropdown-content-{{ elemento[3] }}')">{{ elemento[0] }}</h4>
+<body>
+    <div class="regalos">
+        <div class="img-regalo">
+            <img src="{{ url_for('static',filename='image/regalos-sugeridos.png')}}">
         </div>
-        <div id="dropdown-content-{{ elemento[3] }}" class="dropdown-content">
-            <p class="description">{{ elemento[1] }}</p>
-            <a class="btn-aceptar" onclick="AnotarRegalo('{{ elemento[0] }}','check-circle-{{ elemento[3] }}')">ANOTAR</a>
-            {% if elemento[2] %}
-            <a target="_blank" class="btn-referencia" href="{{ elemento[2] }}">REFERENCIA</a>
-            {% endif %}
+        
+            <div class="caja-de-regalos">
+            
+                {% for elemento in lista %}
+                <div class="caja-exterior-1">
+                <div class="caja">
+                    <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior">
+                        <div class="caja-interior">
+                            <div class="caja-titulo">
+                                <div class="tiulo-secundario" id="tiulo-secundario-{{ elemento[3] }}" >
+                                    <h6 class="titulo" onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}')">{{ elemento[0] }}</h6>
+                                    <p class="descripcion">{{ elemento[1] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if elemento[2] %}
+                        <a target="_blank" class="btn-referencia" href="{{ elemento[2] }}">VER</a>
+                        {% else %}
+                            <p target="_blank" class="btn-referencia">VER</p>
+                        {% endif %}
+                    </div>   
+                </div>     
+                {% endfor %}
+            
         </div>
+        <div class="img-regalo-debajo">
+            <img src="{{ url_for('static',filename='image/regalos-sugeridos-debajo.png')}}">
+        </div>
+        <button class="btn-regalar" onclick="enviarRegalos()"> regalar </button>
     </div>
-{% endfor %}
-
-<button class="btn-regalar" onclick="enviarRegalos()"> regalar </button>
-
 <script>
     var listaDeRegalos = [];
 
-    function toggleDropdown(id) {
-        var content = document.getElementById(id);
-        if (content.style.display === "none" || content.style.display === "") {
-            content.style.display = "flex";
-        } else {
-            content.style.display = "none";
-        }
-    }
-
     function AnotarRegalo(nombreRegalo, id) {
         var check = document.getElementById(id);
-        if (check.classList.contains('check-circle')) {
-            check.classList.remove('check-circle');
-            check.classList.add('check-circle-validado');
+        if (check.classList.contains('caja-exterior')) {
+            check.classList.remove('caja-exterior');
+            check.classList.add('caja-exterior-validado');
             listaDeRegalos.push(nombreRegalo);
         } else {
-            check.classList.remove('check-circle-validado');
-            check.classList.add('check-circle');
+            check.classList.remove('caja-exterior-validado');
+            check.classList.add('caja-exterior');
             eliminarRegalo(nombreRegalo);
         }
     }

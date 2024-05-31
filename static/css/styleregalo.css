@@ -37,10 +37,10 @@ body, html {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    max-width: 310px;
+    max-width: 275px;
     min-width: 140px;
-    width: 39vw;
-    height: 8vh;
+    width: 45vw;
+    height: 6vh;
     max-height: 77px;
     min-height: 45px;
     box-sizing: border-box;
@@ -67,14 +67,15 @@ body, html {
 .caja-exterior, .caja-exterior-validado{
     border: 1px solid #eba7ed ;
     border-radius: 5px;
-    width: 28vw;
-    height: 7vh;
+    width: 29vw;
+    height: 5vh;
     padding: 5px;
     max-width: 250px;
     min-width: 70px;
     max-height: 70px;
     min-height: 35px;
     margin-right: 2px;
+    cursor: pointer;
 }
 
 .caja-exterior-validado {
@@ -84,8 +85,8 @@ body, html {
 .caja-interior{
     border: 1px solid #eba7ed ;
     border-radius: 5px;
-    width: 27vw;
-    height: 7vh;
+    width: 29vw;
+    height: 5vh;
     max-width: 250px;
     min-width: 70px;
     max-height: 70px;
@@ -100,10 +101,9 @@ body, html {
 
 .titulo {
     margin: 0;
-    font-size: 0.6em;
-    cursor: pointer;
+    font-size: 0.5em;
     color: #4d4195;
-
+    font-weight: 600;
 }
 
 .descripcion {
@@ -130,28 +130,34 @@ body, html {
     background-color: #0056b3;
 }
 
+.btn-referencia-escondido{
+    display: none;
+}
+
 .btn-regalar{
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(to right, #4d4195 , #564a97 ); 
+    bottom: 17%;
+    background: linear-gradient(to right, #fbd0fc  , #f8d3f8  ); 
     border: none;
-    border-radius: 50%; /* Hace el botón redondo */
-    color: #eba7ed ;
+    border-radius: 20px; /* Hace el botón redondo */
+    color: #4d4195 ;
     padding: 15px;
     font-size: 16px;
     cursor: pointer;
-    width: 60px; /* Ajusta el ancho para hacerlo redondo */
-    height: 60px; /* Ajusta la altura para hacerlo redondo */
+    width: 120px; /* Ajusta el ancho para hacerlo redondo */
+    height: 30px; /* Ajusta la altura para hacerlo redondo */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra para mejorar la visibilidad */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Añade una sombra para mejorar la visibilidad */
     z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
+    font-weight: 600;
+
 }
 
 .btn-regalar:hover {
-    background: linear-gradient(to right, #4d4195 , #564a97  ); 
+    background: linear-gradient(to right, #4d4195 , #564a97  );
+    color: #eba7ed;
 }
 
 .tiulo-secundario{
@@ -163,3 +169,14 @@ body, html {
     justify-content: center;
 }
 
+@media (min-width: 500px) {
+    .titulo {
+        font-size: 0.6em;
+    }
+    
+    .descripcion {
+        font-size: 0.5em;
+
+    
+    }
+  }

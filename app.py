@@ -18,7 +18,6 @@ mongo_collection_name_repetibles = os.getenv("MONGO_REGALOSREPETIBLES")
 
 client = MongoClient(mongo_uri)
 db = client[mongo_db_name]
-
 collection_no_repetibles = db[mongo_collection_name_no_repetibles]
 collection_repetibles = db[mongo_collection_name_repetibles]
 
@@ -73,7 +72,20 @@ def enviar():
     whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
     return jsonify({'whatsapp_link': whatsapp_link})
 
-
+"""
+@app.route('/pasarafalse')
+def pasarafalse():
+    # Obtiene todos los documentos de la colección
+    regalos = collection_no_repetibles.find({})
+    
+    # Itera sobre los documentos y actualiza 'meAnoto' a False
+    for regalo in regalos:
+        # Actualiza el campo 'meAnoto' a False para este documento
+        collection_no_repetibles.update_one({"_id": regalo["_id"]}, {"$set": {"meAnoto": False}})
+    
+    return jsonify({"message": "Regalos cambiados"}), 200
+"""
+    
                                          
 
 if __name__ == '__main__':

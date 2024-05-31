@@ -17,20 +17,20 @@
                 {% for elemento in lista %}
                 <div class="caja-exterior-1">
                 <div class="caja">
-                    <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior">
+                    <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior"  onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}','btn-referencia-{{ elemento[3] }}')">
                         <div class="caja-interior">
                             <div class="caja-titulo">
                                 <div class="tiulo-secundario" id="tiulo-secundario-{{ elemento[3] }}" >
-                                    <h6 class="titulo" onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}')">{{ elemento[0] }}</h6>
+                                    <p class="titulo">{{ elemento[0] }}</p>
                                     <p class="descripcion">{{ elemento[1] }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% if elemento[2] %}
-                        <a target="_blank" class="btn-referencia" href="{{ elemento[2] }}">VER</a>
+                        <a target="_blank" class="btn-referencia-escondido" href="{{ elemento[2] }}" id="btn-referencia-{{ elemento[3] }}">VER</a>
                         {% else %}
-                            <p target="_blank" class="btn-referencia">VER</p>
+                            <p target="_blank" class="btn-referencia-escondido" href="{{ elemento[2] }}" id="btn-referencia-{{ elemento[3] }}">VER</p>
                         {% endif %}
                     </div>   
                 </div>     
@@ -45,7 +45,7 @@
 <script>
     var listaDeRegalos = [];
 
-    function AnotarRegalo(nombreRegalo, id) {
+    function AnotarRegalo(nombreRegalo, id,idbtn) {
         var check = document.getElementById(id);
         if (check.classList.contains('caja-exterior')) {
             check.classList.remove('caja-exterior');
@@ -55,6 +55,16 @@
             check.classList.remove('caja-exterior-validado');
             check.classList.add('caja-exterior');
             eliminarRegalo(nombreRegalo);
+        }
+
+
+        var btn = document.getElementById(idbtn);
+        if (btn.classList.contains('btn-referencia-escondido')) {
+            btn.classList.remove('btn-referencia-escondido');
+            btn.classList.add('btn-referencia');
+        } else {
+            btn.classList.remove('btn-referencia');
+            btn.classList.add('btn-referencia-escondido');
         }
     }
 

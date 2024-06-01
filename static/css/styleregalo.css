@@ -264,7 +264,8 @@ body, html {
 }
 
 .btn-volver-2{
-        width: 15%;
+        width: 16%;
         cursor: pointer;
         visibility: hidden;
+        width: 15;
     }

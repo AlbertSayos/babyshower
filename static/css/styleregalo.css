@@ -228,6 +228,7 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: space-evenly;
 }
 
 .menu{
@@ -253,11 +254,17 @@ body, html {
     justify-content: flex-end;
     flex-wrap: nowrap;
   
-  }
-  
-  .mutear{
+}
+
+.mutear{
     background-color: transparent;
       border: none;
       padding: 30px;
       font-size: larger;
-  }
+}
+
+.btn-volver-2{
+        width: 15%;
+        cursor: pointer;
+        visibility: hidden;
+    }

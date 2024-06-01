@@ -144,16 +144,19 @@ body, html {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
+  max-width: 650px;
+
 }
 
 /* Botón para cerrar la ventana emergente */
 .close {
+  position: fixed;
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  width: 100%;
+  width: 72%;
   text-align: end;
 }
 
@@ -164,10 +167,16 @@ body, html {
   cursor: pointer;
 }
 
-.aviso, .msj{
+.aviso{
   width: 50%;
+  margin-bottom: 10px;
 }
 
 .btn-aviso{
   width: 25%;
+  
+}
+
+.msj{
+  width: 80%;
 }

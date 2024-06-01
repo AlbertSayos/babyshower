@@ -15,24 +15,45 @@
             <div class="caja-de-regalos">
             
                 {% for elemento in lista %}
-                <div class="caja-exterior-1">
-                <div class="caja">
-                    <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior"  onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}','btn-referencia-{{ elemento[3] }}')">
-                        <div class="caja-interior">
-                            <div class="caja-titulo">
-                                <div class="tiulo-secundario" id="tiulo-secundario-{{ elemento[3] }}" >
-                                    <p class="titulo">{{ elemento[0] }}</p>
-                                    <p class="descripcion">{{ elemento[1] }}</p>
+                    {% if (elemento[3]%2 == 0)  %}
+                    <div class="caja-exterior-1">
+                    <div class="caja izq">
+                        <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior"  onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}','btn-referencia-{{ elemento[3] }}')">
+                            <div class="caja-interior">
+                                <div class="caja-titulo">
+                                    <div class="tiulo-secundario" id="tiulo-secundario-{{ elemento[3] }}" >
+                                        <p class="titulo">{{ elemento[0] }}</p>
+                                        <p class="descripcion">{{ elemento[1] }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% if elemento[2] %}
-                        <a target="_blank" class="btn-referencia-escondido" href="{{ elemento[2] }}" id="btn-referencia-{{ elemento[3] }}">VER</a>
+                        {% if elemento[2] %}
+                            <a target="_blank" class="btn-referencia-escondido" href="{{ elemento[2] }}" id="btn-referencia-{{ elemento[3] }}">VER</a>
 
-                        {% endif %}
-                    </div>   
-                </div>     
+                            {% endif %}
+                        </div>   
+                    </div>
+                    {% else %}
+                    <div class="caja-exterior-1">
+                        <div class="caja der">
+                            <div id="caja-exterior-{{ elemento[3] }}" class="caja-exterior"  onclick="AnotarRegalo('{{ elemento[0] }}','caja-exterior-{{ elemento[3] }}','btn-referencia-{{ elemento[3] }}')">
+                                <div class="caja-interior">
+                                    <div class="caja-titulo">
+                                        <div class="tiulo-secundario" id="tiulo-secundario-{{ elemento[3] }}" >
+                                            <p class="titulo">{{ elemento[0] }}</p>
+                                            <p class="descripcion">{{ elemento[1] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if elemento[2] %}
+                                <a target="_blank" class="btn-referencia-escondido" href="{{ elemento[2] }}" id="btn-referencia-{{ elemento[3] }}">VER</a>
+    
+                                {% endif %}
+                            </div>   
+                        </div>
+                    {% endif %}
                 {% endfor %}
                 <div class="botonera">
                     <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">

@@ -27,7 +27,7 @@
         <img class="msj" src="{{ url_for('static',filename='image/msj-teesperamos.png')}}">
       </div>
       <div class="botones">
-        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia()">
+        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAviso()">
         <img class="btn" src="{{ url_for('static', filename='image/btn-ubicacion.png') }}" onclick="irADireccion()">
         <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}" onclick="irARegalos()">
         
@@ -39,20 +39,9 @@
       <div class="bubble bubble4"></div>
     </div>
     <script>
-      function toggleAsistencia() {
-          fetch('/enviar')
-              .then(response => response.json())
-              .then(data => {
-                  const whatsappLink = data.whatsapp_link;
-                  // Crear un elemento <a> dinámicamente
-                  const a = document.createElement('a');
-                  a.href = whatsappLink;
-                  a.target = "_blank"; // Establecer el target
-                  // Simular un clic en el enlace
-                  a.click();
-              })
-              .catch(error => console.error('Error al enviar el mensaje:', error));
-      }
+      function toggleAviso() {
+            window.location.href = "/aviso";
+        }
       function irADireccion() {
             const a = document.createElement('a');
             a.href = "https://www.google.com/maps/place/Galvarino+2493,+Chiguayante,+B%C3%ADo+B%C3%ADo,+Chile/@-36.9136494,-73.0294044,17z/data=!3m1!4b1!4m5!3m4!1s0x9669b762e7ddbc1f:0xbc240be36e8b1b9b!8m2!3d-36.9136537!4d-73.0268295?hl=es&entry=ttu";

@@ -93,6 +93,10 @@ body, html {
   animation: float 6s linear infinite;
 }
 
+.bubble{
+  pointer-events: none;
+}
+
 @keyframes float {
   0% {
       bottom: -100px; /* Empezar desde fuera de la vista */

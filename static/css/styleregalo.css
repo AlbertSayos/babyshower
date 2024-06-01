@@ -70,7 +70,7 @@ body, html {
     width: 29vw;
     height: 5vh;
     padding: 5px;
-    max-width: 250px;
+    max-width: 226px;
     min-width: 70px;
     max-height: 70px;
     min-height: 35px;
@@ -87,7 +87,7 @@ body, html {
     border-radius: 5px;
     width: 29vw;
     height: 5vh;
-    max-width: 250px;
+    max-width: 226px;
     min-width: 70px;
     max-height: 70px;
     min-height: 35px;
@@ -136,7 +136,7 @@ body, html {
 
 .btn-regalar{
     position: fixed;
-    bottom: 17%;
+    bottom: 14%;
     background: linear-gradient(to right, #fbd0fc  , #f8d3f8  ); 
     border: none;
     border-radius: 20px; /* Hace el botón redondo */
@@ -179,4 +179,12 @@ body, html {
 
     
     }
+  }
+
+.btn-confirmar-regalo{
+    position: fixed;
+    width: 30%;
+    z-index: 1000;
+    cursor: pointer;
+    bottom: 13%;
   }

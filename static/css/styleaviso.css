@@ -1,0 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+
+.zonaDeImagenes {
+  width: 100%;
+  background-image: url(../image/aviso_fondo.png);
+  background-size: 98vw 97vh;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  background-position: center;
+  max-width: 700px;
+  max-height: 872px;
+  align-items: center;
+  justify-content: space-around;
+  }
+
+  @media (min-width: 700px) {
+    .zonaDeImagenes {
+        background-size: cover;
+    }
+  }
+
+  .aviso, .msj{
+    width: 70%;
+  }
+
+  .btn{
+    width: 30%;
+  }

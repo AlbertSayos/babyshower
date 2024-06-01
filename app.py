@@ -72,6 +72,11 @@ def enviar():
     whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
     return jsonify({'whatsapp_link': whatsapp_link})
 
+
+@app.route('/aviso')
+def aviso():
+    return render_template('aviso.html')
+
 """
 @app.route('/pasarafalse')
 def pasarafalse():

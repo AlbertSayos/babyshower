@@ -56,14 +56,16 @@
                     {% endif %}
                 {% endfor %}
                 <div class="botonera">
-                    <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">
+                    <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}" onclick="enviarRegalos()">
                 </div>
             </div>
         <div class="img-regalo-debajo">
             <img src="{{ url_for('static',filename='image/regalos-sugeridos-debajo.png')}}">
         </div>
         <!--<img class="btn-confirmar-regalo" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">-->
-        <div id="backArrow" class="back-arrow" onclick="volverAlHome()">&#8592;</div>
+        <div class="menu">
+            <img class="btn-volver" src="{{ url_for('static',filename='image/btn-volver.png')}}" onclick="volverAlHome()"></img>
+        </div>
     </div>
 <script>
     var listaDeRegalos = [];
@@ -119,6 +121,9 @@
     function volverAlHome() {
         window.location.href = "/";
     }    
+
+    
+
 
 </script>
 

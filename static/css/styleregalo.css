@@ -229,3 +229,17 @@ body, html {
     align-items: center;
     justify-content: center;
 }
+
+.menu{
+    width: 100%;
+    max-width: 700px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.btn-volver{
+    width: 15%;
+    cursor: pointer;
+}
+

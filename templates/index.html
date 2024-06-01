@@ -44,9 +44,11 @@
       <img class="btn-aviso" src="{{ url_for('static',filename='image/btn-aceptar.png')}}" onclick="toggleAsistencia()">
     </div>
   </div>
-
-
-
+  <div class="musica">
+    <audio id="background-music" src="{{ url_for('static', filename='sound/musicaDeFondo.mp3') }}" autoplay loop></audio>
+      
+    <button id="mute-button" class="mutear" onclick="toggleMute()">🔊</button>
+  </div>
     <script>
       function toggleAviso() {
             window.location.href = "/aviso";
@@ -99,6 +101,18 @@
               .catch(error => console.error('Error al enviar el mensaje:', error));
       }
 
+      function toggleMute() {
+        var music = document.getElementById('background-music');
+        var button = document.getElementById('mute-button');
+        
+        if (music.muted) {
+            music.muted = false;
+            button.textContent = '🔊';
+        } else {
+            music.muted = true;
+            button.textContent = '🔇';
+        }
+    }
       
   </script>
 </body>

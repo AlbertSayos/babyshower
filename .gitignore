@@ -1,3 +1,7 @@
 /pycache
 .env
 .venv
+copiarDB.py
+traerdato.py
+regalosnorepetibles.csv
+regalosRepetibles.csv

@@ -187,4 +187,5 @@ body, html {
     z-index: 1000;
     cursor: pointer;
     bottom: 13%;
+    max-width: 200px;
   }

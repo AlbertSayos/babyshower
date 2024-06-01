@@ -243,3 +243,21 @@ body, html {
     cursor: pointer;
 }
 
+.musica{
+    width: 100%;
+    max-width: 700px;
+    top: 10%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+  
+  }
+  
+  .mutear{
+    background-color: transparent;
+      border: none;
+      padding: 30px;
+      font-size: larger;
+  }

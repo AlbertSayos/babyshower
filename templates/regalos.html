@@ -56,16 +56,22 @@
                     {% endif %}
                 {% endfor %}
                 <div class="botonera">
+                    <img class="btn-volver" src="{{ url_for('static',filename='image/btn-volver.png')}}" onclick="volverAlHome()"></img>
                     <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}" onclick="enviarRegalos()">
                 </div>
             </div>
         <div class="img-regalo-debajo">
             <img src="{{ url_for('static',filename='image/regalos-sugeridos-debajo.png')}}">
         </div>
-        <!--<img class="btn-confirmar-regalo" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">-->
+        <!--<img class="btn-confirmar-regalo" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">
         <div class="menu">
             <img class="btn-volver" src="{{ url_for('static',filename='image/btn-volver.png')}}" onclick="volverAlHome()"></img>
-        </div>
+        </div>-->
+        <div class="musica">
+            <audio id="background-music" src="{{ url_for('static', filename='sound/musicaDeFondo.mp3') }}" autoplay loop></audio>
+              
+            <button id="mute-button" class="mutear" onclick="toggleMute()">🔊</button>
+          </div>
     </div>
 <script>
     var listaDeRegalos = [];
@@ -122,7 +128,18 @@
         window.location.href = "/";
     }    
 
-    
+    function toggleMute() {
+        var music = document.getElementById('background-music');
+        var button = document.getElementById('mute-button');
+        
+        if (music.muted) {
+            music.muted = false;
+            button.textContent = '🔊';
+        } else {
+            music.muted = true;
+            button.textContent = '🔇';
+        }
+    }
 
 
 </script>

@@ -13,7 +13,7 @@ body, html {
 .regalos {
     width: 100%;
     max-width: 700px;
-    height: 100vh;
+    height: 99vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,6 +24,7 @@ body, html {
 /* Estilos para las imágenes */
 .img-regalo, .img-regalo-debajo {
     width: 100%;
+    padding-top: 5px;
 }
 
 .img-regalo img, .img-regalo-debajo img {

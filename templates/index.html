@@ -18,8 +18,6 @@
   </style>
 </head>
 
-
-
 <body>
 
     <div class="zonaDeImagenes">
@@ -27,7 +25,7 @@
         <img class="msj" src="{{ url_for('static',filename='image/msj-teesperamos.png')}}">
       </div>
       <div class="botones">
-        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAviso()">
+        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" id="openEmergenteBtn">
         <img class="btn" src="{{ url_for('static', filename='image/btn-ubicacion.png') }}" onclick="irADireccion()">
         <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}" onclick="irARegalos()">
         
@@ -38,6 +36,17 @@
       <div class="bubble bubble3"></div>
       <div class="bubble bubble4"></div>
     </div>
+    <div id="emergente" class="emergente">
+      <div class="emergente-content">
+          <span id="closeEmergenteBtn" class="close">&times;</span>
+      <img class="aviso"  src="{{ url_for('static',filename='image/aviso.png')}}" >
+      <img class="msj" src="{{ url_for('static', filename='image/aviso_msj.png') }}" >
+      <img class="btn-aviso" src="{{ url_for('static',filename='image/btn-aceptar.png')}}" onclick="toggleAsistencia()">
+    </div>
+  </div>
+
+
+
     <script>
       function toggleAviso() {
             window.location.href = "/aviso";
@@ -53,6 +62,44 @@
             window.location.href = "/regalos";
         }
 
+        // Obtener los elementos del DOM
+        const emergente = document.getElementById('emergente');
+        const openEmergenteBtn = document.getElementById('openEmergenteBtn');
+        const closeEmergenteBtn = document.getElementById('closeEmergenteBtn');
+
+        // Mostrar la ventana emergente al hacer clic en el botón de abrir
+        openEmergenteBtn.onclick = function() {
+            emergente.style.display = 'block';
+        }
+
+        // Cerrar la ventana emergente al hacer clic en el botón de cerrar
+        closeEmergenteBtn.onclick = function() {
+            emergente.style.display = 'none';
+        }
+
+        // Cerrar la ventana emergente al hacer clic fuera del contenido de la ventana
+        window.onclick = function(event) {
+            if (event.target == emergente) {
+                emergente.style.display = 'none';
+            }
+        }
+
+        function toggleAsistencia() {
+          fetch('/enviar')
+              .then(response => response.json())
+              .then(data => {
+                  const whatsappLink = data.whatsapp_link;
+                  // Crear un elemento <a> dinámicamente
+                  const a = document.createElement('a');
+                  a.href = whatsappLink;
+                  a.target = "_blank"; // Establecer el target
+                  // Simular un clic en el enlace
+                  a.click();
+              })
+              .catch(error => console.error('Error al enviar el mensaje:', error));
+      }
+
+      
   </script>
 </body>
 </html>

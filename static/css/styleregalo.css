@@ -60,7 +60,7 @@ body, html {
     flex-direction: row;
     align-items: center;
     align-content: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 /* Estilos para la caja exterior (cada elemento de regalo) */
@@ -156,7 +156,7 @@ body, html {
 }
 
 .btn-regalar:hover {
-    background: linear-gradient(to right, #4d4195 , #564a97  );
+    background: linear-gradient(to right, #fbd0fc , #564a97  );
     color: #eba7ed;
 }
 
@@ -186,6 +186,40 @@ body, html {
     width: 30%;
     z-index: 1000;
     cursor: pointer;
-    bottom: 13%;
+    bottom: 5%;
     max-width: 200px;
   }
+
+  .btn-confirmar-regalo2{
+    width: 25%;
+  }
+
+
+  .back-arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    background-color: #fbd0fc;
+    border: 2px solid #564a97;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #564a97;
+}
+
+.back-arrow:hover {
+    background-color: #564a97;
+    color: #fbd0fc;
+}
+.botonera{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

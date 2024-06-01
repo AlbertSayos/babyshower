@@ -77,7 +77,7 @@ def enviar():
 def aviso():
     return render_template('aviso.html')
 
-"""
+
 @app.route('/pasarafalse')
 def pasarafalse():
     # Obtiene todos los documentos de la colección
@@ -89,7 +89,7 @@ def pasarafalse():
         collection_no_repetibles.update_one({"_id": regalo["_id"]}, {"$set": {"meAnoto": False}})
     
     return jsonify({"message": "Regalos cambiados"}), 200
-"""
+
     
                                          
 

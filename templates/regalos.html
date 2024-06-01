@@ -34,12 +34,15 @@
                     </div>   
                 </div>     
                 {% endfor %}
-            
-        </div>
+                <div class="botonera">
+                    <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">
+                </div>
+            </div>
         <div class="img-regalo-debajo">
             <img src="{{ url_for('static',filename='image/regalos-sugeridos-debajo.png')}}">
         </div>
-        <img class="btn-confirmar-regalo" src="{{ url_for('static',filename='image/btn-aceptar.png')}}"onclick="enviarRegalos()">
+        <!--<img class="btn-confirmar-regalo" src="{{ url_for('static',filename='image/btn-confirmar-regalo.png')}}"onclick="enviarRegalos()">-->
+        <div id="backArrow" class="back-arrow" onclick="volverAlHome()">&#8592;</div>
     </div>
 <script>
     var listaDeRegalos = [];
@@ -58,12 +61,14 @@
 
 
         var btn = document.getElementById(idbtn);
-        if (btn.classList.contains('btn-referencia-escondido')) {
-            btn.classList.remove('btn-referencia-escondido');
-            btn.classList.add('btn-referencia');
-        } else {
-            btn.classList.remove('btn-referencia');
-            btn.classList.add('btn-referencia-escondido');
+        if (btn){
+            if (btn.classList.contains('btn-referencia-escondido')) {
+                btn.classList.remove('btn-referencia-escondido');
+                btn.classList.add('btn-referencia');
+            } else {
+                btn.classList.remove('btn-referencia');
+                btn.classList.add('btn-referencia-escondido');
+            }
         }
     }
 
@@ -89,6 +94,10 @@
 
         xhr.send(JSON.stringify({ regalos: listaDeRegalos }));
         }
+    
+    function volverAlHome() {
+        window.location.href = "/";
+    }    
 
 </script>
 

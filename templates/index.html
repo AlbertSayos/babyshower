@@ -41,7 +41,7 @@
           <span id="closeEmergenteBtn" class="close">&times;</span>
       <img class="aviso"  src="{{ url_for('static',filename='image/aviso.png')}}" >
       <img class="msj" src="{{ url_for('static', filename='image/aviso_msj.png') }}" >
-      <img class="btn-aviso" src="{{ url_for('static',filename='image/btn-aceptar.png')}}" onclick="toggleAsistencia()">
+      <img class="btn-aviso" src="{{ url_for('static',filename='image/btn-aceptar.png')}}" onclick="toggleAsistencia2()">
     </div>
   </div>
   <div class="musica">
@@ -103,7 +103,22 @@
                   })
                   .catch(error => console.error('Error al enviar el mensaje:', error));
           }
+          
+          function toggleAsistencia2() {
+            const telefono = "+5491123873922"; // Número de teléfono de destino
+            const mensaje = "hola"; // Mensaje a enviar
+            const whatsappLink = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensaje)}`;
 
+            // Crear un elemento <a> dinámicamente
+            const a = document.createElement('a');
+            a.href = whatsappLink;
+            a.target = "_blank"; // Establecer el target
+            // Añadir el enlace al DOM y hacer clic
+            document.body.appendChild(a);
+            a.click();
+            // Remover el enlace después de hacer clic
+            document.body.removeChild(a);
+        }
 
       function toggleMute() {
         var music = document.getElementById('background-music');

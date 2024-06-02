@@ -87,19 +87,23 @@
         }
 
         function toggleAsistencia() {
-          fetch('/enviar')
-              .then(response => response.json())
-              .then(data => {
-                  const whatsappLink = data.whatsapp_link;
-                  // Crear un elemento <a> dinámicamente
-                  const a = document.createElement('a');
-                  a.href = whatsappLink;
-                  a.target = "_blank"; // Establecer el target
-                  // Simular un clic en el enlace
-                  a.click();
-              })
-              .catch(error => console.error('Error al enviar el mensaje:', error));
-      }
+              fetch('/enviar')
+                  .then(response => response.json())
+                  .then(data => {
+                      const whatsappLink = data.whatsapp_link;
+                      // Crear un elemento <a> dinámicamente
+                      const a = document.createElement('a');
+                      a.href = whatsappLink;
+                      a.target = "_blank"; // Establecer el target
+                      // Añadir el enlace al DOM y hacer clic
+                      document.body.appendChild(a);
+                      a.click();
+                      // Remover el enlace después de hacer clic
+                      document.body.removeChild(a);
+                  })
+                  .catch(error => console.error('Error al enviar el mensaje:', error));
+          }
+
 
       function toggleMute() {
         var music = document.getElementById('background-music');

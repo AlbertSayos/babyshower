@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import urllib.parse
 
 # Cargar las variables de entorno del archivo .env
 load_dotenv()
@@ -69,7 +70,8 @@ def regalar():
 def enviar():
     telefono = os.getenv("NUMTEL")
     mensaje = "Hola! 🤗 con gusto asistiré al Baby Shower 💝 de Gianna 👶🏻👑"
-    whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje}"
+    mensaje_cifrado = urllib.parse.quote(mensaje)  # Codificar mensaje
+    whatsapp_link = f"https://api.whatsapp.com/send?phone={telefono}&text={mensaje_cifrado}"
     return jsonify({'whatsapp_link': whatsapp_link})
 
 

@@ -9,7 +9,7 @@ body, html {
 
 .zonaDeImagenes {
   width: 100%;
-    background-image: url(../image/fondo.png);
+    background-image: url(../image/fondo.webp);
     background-size: 98vw 97vh;
     background-repeat: no-repeat;
     display: flex;
@@ -129,7 +129,7 @@ body, html {
 
 /* Contenido de la ventana emergente */
 .emergente-content {
-  background-image: url(../image/aviso_fondo.png);
+  background-image: url(../image/aviso_fondo.webp);
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 15% auto;

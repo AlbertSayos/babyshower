@@ -31,7 +31,6 @@ def index():
 def mostrar_regalos():
     regalos_no_repetibles = list(collection_no_repetibles.find({}))
     regalos_repetibles = list(collection_repetibles.find({}))
-    #regalos_para_html = [[regalo['compras'], regalo['descripcion'], regalo['link']] for regalo in regalos_repetibles]
     regalos_para_html = []
     i=0
     for regalo in regalos_no_repetibles:
@@ -65,7 +64,7 @@ def regalar():
     else:
         return jsonify({"error": "Datos inválidos"}), 400
     
-
+"""
 @app.route('/enviar', methods=['GET'])
 def enviar():
     telefono = os.getenv("NUMTEL")
@@ -91,9 +90,9 @@ def pasarafalse():
         collection_no_repetibles.update_one({"_id": regalo["_id"]}, {"$set": {"meAnoto": False}})
     
     return jsonify({"message": "Regalos cambiados"}), 200
-
+"""
     
-                                         
+                                       
 
 if __name__ == '__main__':
     app.run(debug=True, port=PORT)

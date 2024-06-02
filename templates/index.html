@@ -25,7 +25,7 @@
         <img class="msj" src="{{ url_for('static',filename='image/msj-teesperamos.png')}}">
       </div>
       <div class="botones">
-        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia()">
+        <img class="btn"  src="{{ url_for('static',filename='image/btn-asistencia.png')}}" onclick="toggleAsistencia2()">
         <img class="btn" src="{{ url_for('static', filename='image/btn-ubicacion.png') }}" onclick="irADireccion()">
         <img class="btn" src="{{ url_for('static',filename='image/btn-regalo.png')}}" onclick="irARegalos()">
         
@@ -110,9 +110,9 @@
             const whatsappLink = `https://api.whatsapp.com/send?phone=${telefono}&text=${encodeURIComponent(mensaje)}`;
 
             // Crear un elemento <a> dinámicamente
-            const a = document.createElement('a');
+              const a = document.createElement('a');
             a.href = whatsappLink;
-            a.target = "_blank"; // Establecer el target
+            a.target = "_blank"; // Establecer el target para abrir en una nueva pestaña
             // Añadir el enlace al DOM y hacer clic
             document.body.appendChild(a);
             a.click();

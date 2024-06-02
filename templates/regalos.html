@@ -57,7 +57,8 @@
                 {% endfor %}
                 <div class="botonera">
                     <img class="btn-volver" src="{{ url_for('static',filename='image/btn-volver.webp')}}" onclick="volverAlHome()">
-                    <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.webp')}}" onclick="enviarRegalos()">
+                    <img class="btn-confirmar-regalo2" src="{{ url_for('static',filename='image/btn-confirmar-regalo.webp')}}" id="openEmergenteBtn">
+                    
                     <img class="btn-volver-2" src="{{ url_for('static',filename='image/btn-volver.webp')}}" onclick="volverAlHome()">
                 </div>
             </div>
@@ -74,65 +75,120 @@
             <button id="mute-button" class="mutear" onclick="toggleMute()">🔊</button>
           </div>
     </div>
-<script>
-    var listaDeRegalos = [];
+    <div id="emergente" class="emergente">
+        <div class="emergente-content">
+        <span id="closeEmergenteBtn" class="close">&times;</span>
+        <img class="msj" src="{{ url_for('static', filename='image/aviso-regalo-msj.webp') }}" >
+        <div id="listaDeRegalosEscogidos" class="listaDeRegalosEscogidos" >
+            <!-- aca va la lista de regalos-->
+        </div>
+        <img class="btn-aviso" src="{{ url_for('static',filename='image/aceptar-reg.webp')}}" onclick="enviarRegalos()">
+      </div>
 
-    function AnotarRegalo(nombreRegalo, id,idbtn) {
-        var check = document.getElementById(id);
-        if (check.classList.contains('caja-exterior')) {
-            check.classList.remove('caja-exterior');
-            check.classList.add('caja-exterior-validado');
-            listaDeRegalos.push(nombreRegalo);
-        } else {
-            check.classList.remove('caja-exterior-validado');
-            check.classList.add('caja-exterior');
-            eliminarRegalo(nombreRegalo);
-        }
-
-
-        var btn = document.getElementById(idbtn);
-        if (btn){
-            if (btn.classList.contains('btn-referencia-escondido')) {
-                btn.classList.remove('btn-referencia-escondido');
-                btn.classList.add('btn-referencia');
-            } else {
-                btn.classList.remove('btn-referencia');
-                btn.classList.add('btn-referencia-escondido');
-            }
-        }
-    }
-
-    function eliminarRegalo(nombre) {
-        listaDeRegalos = listaDeRegalos.filter(function(regalo) {
-            return regalo !== nombre;
-        });
-    }
-
-    function enviarRegalos() {
-        var xhr = new XMLHttpRequest();
-        var url = "/regalar";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-        xhr.onreadystatechange = function () {
-             if (xhr.readyState === 4 && xhr.status === 200) {
-             // Aquí puedes manejar la respuesta del backend si es necesario
-                console.log(xhr.responseText);
-                window.location.href = "/";
-            }
-        };
-
-        xhr.send(JSON.stringify({ regalos: listaDeRegalos }));
-        }
+     <!--*******************************************Script********************************************--> 
     
-    function volverAlHome() {
-        window.location.href = "/";
-    }    
+    <script>
 
-    function toggleMute() {
+        var listaDeRegalos = [];
+        // Obtener los elementos del DOM
+        const emergente = document.getElementById('emergente');
+        const openEmergenteBtn = document.getElementById('openEmergenteBtn');
+        const closeEmergenteBtn = document.getElementById('closeEmergenteBtn');
+        const listaDeRegalosEscogidos = document.getElementById('listaDeRegalosEscogidos');
+
+        // Función para mostrar la lista de regalos en la ventana emergente
+        function mostrarListaDeRegalos() {
+        // Limpiar la lista actual
+        listaDeRegalosEscogidos.innerHTML = '';
+
+        // Crear un <ul> y agregar cada regalo como <li>
+        const ul = document.createElement('ul');
+        listaDeRegalos.forEach(function(regalo) {
+            const li = document.createElement('li');
+            li.textContent = regalo;
+            ul.appendChild(li);
+        });
+
+        // Agregar el <ul> al div de lista de regalos
+        listaDeRegalosEscogidos.appendChild(ul);
+    }
+
+        // Mostrar la ventana emergente al hacer clic en el botón de abrir
+        openEmergenteBtn.onclick = function() {
+            mostrarListaDeRegalos();
+            emergente.style.display = 'block';
+        }
+
+
+        // Cerrar la ventana emergente al hacer clic en el botón de cerrar
+        closeEmergenteBtn.onclick = function() {
+            emergente.style.display = 'none';
+        }
+
+        // Cerrar la ventana emergente al hacer clic fuera del contenido de la ventana
+        window.onclick = function(event) {
+            if (event.target == emergente) {
+                emergente.style.display = 'none';
+            }
+        }
+
+
+        function AnotarRegalo(nombreRegalo, id,idbtn) {
+            var check = document.getElementById(id);
+            if (check.classList.contains('caja-exterior')) {
+                check.classList.remove('caja-exterior');
+                check.classList.add('caja-exterior-validado');
+                listaDeRegalos.push(nombreRegalo);
+            } else {
+                check.classList.remove('caja-exterior-validado');
+                check.classList.add('caja-exterior');
+                eliminarRegalo(nombreRegalo);
+            }
+
+
+            var btn = document.getElementById(idbtn);
+            if (btn){
+                if (btn.classList.contains('btn-referencia-escondido')) {
+                    btn.classList.remove('btn-referencia-escondido');
+                    btn.classList.add('btn-referencia');
+                } else {
+                    btn.classList.remove('btn-referencia');
+                    btn.classList.add('btn-referencia-escondido');
+                }
+            }
+        }
+
+        function eliminarRegalo(nombre) {
+            listaDeRegalos = listaDeRegalos.filter(function(regalo) {
+                return regalo !== nombre;
+            });
+        }
+
+        function enviarRegalos() {
+            var xhr = new XMLHttpRequest();
+            var url = "/regalar";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                // Aquí puedes manejar la respuesta del backend si es necesario
+                    console.log(xhr.responseText);
+                    window.location.href = "/";
+                }
+            };
+
+            xhr.send(JSON.stringify({ regalos: listaDeRegalos }));
+            }
+
+        function volverAlHome() {
+            window.location.href = "/";
+        }    
+        
+        function toggleMute() {
         var music = document.getElementById('background-music');
         var button = document.getElementById('mute-button');
-        
+
         if (music.muted) {
             music.muted = false;
             button.textContent = '🔊';
@@ -140,11 +196,9 @@
             music.muted = true;
             button.textContent = '🔇';
         }
-    }
+        }
 
-
-</script>
-
+        </script>
 </body>
 </html>
 

@@ -57,7 +57,6 @@ def regalar():
             result = collection_no_repetibles.find_one({"compras": regalo})
             if result:
                 # Actualiza el valor de 'meAnoto' a True
-                print("lo cambie")
                 collection_no_repetibles.update_one({"compras": regalo}, {"$set": {"meAnoto": True}}
 )
         return jsonify({"message": "Regalos recibidos", "regalos": regalos}), 200
@@ -77,8 +76,8 @@ def enviar():
 @app.route('/aviso')
 def aviso():
     return render_template('aviso.html')
-
-
+"""
+"""
 @app.route('/pasarafalse')
 def pasarafalse():
     # Obtiene todos los documentos de la colección
